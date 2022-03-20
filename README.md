@@ -1,8 +1,7 @@
 # Password-Generator
 
 ## Need a new password? I've got the site for you!
-
-<img src="assets/image/README.png" style="width:500px" alt="screenshot of password generator site" />
+![screenshot](/assets/image/README.PNG)
 
 ### Access the site <a href="https://mrsdno.github.io/password-generator/">here</a>!
 
