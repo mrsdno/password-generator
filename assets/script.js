@@ -52,6 +52,13 @@ var passwordModel = {
   specialCharacters: {} 
 }
 
+function createPassword(passwordModel) {
+  // create string with lowercase letters
+  var lowercaseOptions = "abcdefghijklmnopqrstuvwxyz";
+  var uppercaseOptions = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numericOptions = "1234567890";
+  var specialOptions = "[$&+,:;=?@#|'<>.-^*()%!]";
+}
 
 // Write password to the #password input
 function writePassword() {
