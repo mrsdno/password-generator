@@ -64,7 +64,7 @@ var generatePassword = function() {
 
       // create string with special characters if speicalCharacters is true, if not string is empty
       if (passwordModel.specialCharacters) {
-        var specialOptions = "[$&+,:;=?@#|'<>.-^*()%!]"
+        var specialOptions = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
       }
       else {
         var specialOptions = "";
