@@ -38,7 +38,49 @@ var generatePassword = function() {
     }
 
     else {
-      // create the password from the password model calling createPassword
+      // create string with lowercase letters if lowercaseCharacters is true, if not string is empty
+      if (passwordModel.lowercaseCharacters) {
+        var lowercaseOptions = "abcdefghijklmnopqrstuvwxyz";
+      }
+      else {
+        var lowercaseOptions = "";
+      }
+
+      // create string with uppercase letters if uppercaseCharacters is true, if not string is empty
+      if (passwordModel.uppercaseCharacters) {
+        var uppercaseOptions = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      }
+      else {
+        var uppercaseOptions = "";
+      }
+
+      // create string with numbers if numericCharacters is true, if not string is empty
+      if (passwordModel.numericCharacters) {
+        var numericOptions = "1234567890";
+      }
+      else {
+        var numericOptions = "";
+      }
+
+      // create string with special characters if speicalCharacters is true, if not string is empty
+      if (passwordModel.specialCharacters) {
+        var specialOptions = "[$&+,:;=?@#|'<>.-^*()%!]"
+      }
+      else {
+        var specialOptions = "";
+      }
+      
+      var passwordList = (lowercaseOptions + uppercaseOptions + numericOptions + specialOptions);
+      var password = '';
+      password.length = passwordModel.passwordLength;
+      
+      // if only lowercase option selected
+        for(var i=0; i < passwordModel.passwordLength; i++) {
+        
+        password +=  passwordList.charAt(Math.floor(Math.random() * passwordList.length));
+      }  
+        console.log(password);
+        return password;
     }
   }
   console.log(passwordModel);
@@ -50,14 +92,6 @@ var passwordModel = {
   uppercaseCharacters: {},
   numericCharacters: {},
   specialCharacters: {} 
-}
-
-function createPassword(passwordModel) {
-  // create string with lowercase letters
-  var lowercaseOptions = "abcdefghijklmnopqrstuvwxyz";
-  var uppercaseOptions = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var numericOptions = "1234567890";
-  var specialOptions = "[$&+,:;=?@#|'<>.-^*()%!]";
 }
 
 // Write password to the #password input
