@@ -1,19 +1,17 @@
 // Assignment code here
 
-
-
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
 var generatePassword = function() {
   var passwordLength = window.prompt('How long do you want your password to be? (Select between 8 - 128 characters)')
   console.log('The password length is ' + passwordLength + '.');
       
   if (passwordLength < 8 || passwordLength > 128) {
+    // alert user password is not right length
     window.alert('The length must be between 8 - 128 characters. Click the button again to start over.');
+    var password = "We weren't able to make your password. Please try again!";
+    return password;
   }
 
-  else {
+  else { // set the password length, and get more info from user
     passwordModel.passwordLength = passwordLength;
   
     // ask about lowercase characters and assign to password model
@@ -35,9 +33,11 @@ var generatePassword = function() {
     // check password model to ensure at least one true value for characters
     if (!passwordModel.lowercaseCharacters && !passwordModel.uppercaseCharacters && !passwordModel.numericCharacters && !passwordModel.specialCharacters) {
       window.alert('You need to choose at least one character type to work with! Please click the button to start over.');
+      var password = "We weren't able to make your password. Please try again!";
+      return password;
     }
 
-    else {
+    else { // create password for user
       // create string with lowercase letters if lowercaseCharacters is true, if not string is empty
       if (passwordModel.lowercaseCharacters) {
         var lowercaseOptions = "abcdefghijklmnopqrstuvwxyz";
@@ -70,22 +70,23 @@ var generatePassword = function() {
         var specialOptions = "";
       }
       
+      // create string with all of the options we have to use for the password and set length based off user input
       var passwordList = (lowercaseOptions + uppercaseOptions + numericOptions + specialOptions);
       var password = '';
       password.length = passwordModel.passwordLength;
       
-      // if only lowercase option selected
-        for(var i=0; i < passwordModel.passwordLength; i++) {
-        
-        password +=  passwordList.charAt(Math.floor(Math.random() * passwordList.length));
+      // use loop to select random character from passwordList
+      for(var i=0; i < passwordModel.passwordLength; i++) {
+      password +=  passwordList.charAt(Math.floor(Math.random() * passwordList.length));
       }  
-        console.log(password);
-        return password;
+      console.log(password);
+      return password;
     }
   }
   console.log(passwordModel);
 }
 
+// object to hold user inputs
 var passwordModel = {
   passwordLength: {},
   lowercaseCharacters: {},
@@ -93,6 +94,10 @@ var passwordModel = {
   numericCharacters: {},
   specialCharacters: {} 
 }
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
 
 // Write password to the #password input
 function writePassword() {
@@ -102,9 +107,6 @@ function writePassword() {
   passwordText.value = password;
   
 }
-
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
